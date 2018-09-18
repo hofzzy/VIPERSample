@@ -1,0 +1,36 @@
+//
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+protocol {{ module_info.name }}ViewInput: class {
+}
+
+class {{ module_info.name }}TableViewController: UITableViewController {
+  var presenter: {{ module_info.name }}ViewOutput?
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func numberOfSections(in tableView: UITableView) -> Int {
+    return 0
+  }
+
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return 0
+  }
+
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+    return cell
+  }
+}
+
+extension {{ module_info.name }}TableViewController: {{module_info.name}}ViewInput {
+}

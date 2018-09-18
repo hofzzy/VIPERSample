@@ -1,0 +1,32 @@
+//
+//  {{ prefix }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+
+protocol {{ module_info.name }}RouterInput: class {
+  static func create{{ module_info.name }}Modules() -> UIViewController
+}
+
+class {{ module_info.name }}Router: {{ module_info.name }}RouterInput {
+  static func create{{ module_info.name }}Modules() -> UIViewController {
+    let viewController = UIStoryboard(name: "{{ module_info.name }}", bundle: nil).instantiateInitialViewController() as! {{ module_info.name }}ViewController
+    let viewController = UIStoryboard(name: "{{ module_info.name }}", bundle: nil).instantiateInitialViewController() as! {{ module_info.name }}TableViewController
+
+    let presenter: {{ module_info.name }}PresenterInput & {{ module_info.name }}ViewOutput & {{ module_info.name }}InteractorOutput = {{ module_info.name }}Presenter()
+    let interactor: {{ module_info.name }}InteractorInput = {{ module_info.name }}Interactor()
+    let router: {{ module_info.name }}RouterInput = {{ module_info.name }}Router()
+
+    viewController.presenter = presenter
+    presenter.view = viewController
+    presenter.interactor = interactor
+    presenter.router = router
+    interactor.presenter = presenter
+
+    return viewController
+  }
+}
